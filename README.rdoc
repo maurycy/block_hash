@@ -1,0 +1,61 @@
+= BlockHash
+
+BlockHash evaluates a block to a hash.
+
+==Quickstart
+
+The simplest usage:
+
+  config = BlockHash.evaluate do |o|
+    o.name    "maurycy"
+    o.email   "maurycy@g.pl"
+  end
+  
+  => {:email=>"maurycy@g.pl", :name=>"maurycy"}
+  
+Please note that keys are symbols.
+
+To set default values, try:
+
+  defaults = {
+    :name => "maurycy"
+  }
+  
+  config = BlockHash.evaluate(defaults) do |o|
+    o.email   "maurycy@g.pl"
+  end
+
+  => {:email=>"maurycy@g.pl", :name=>"maurycy"}
+
+An example with a method:
+
+  class Application
+    acts_as_serious :how => :deadly
+    
+    def self.configuration(&block)
+      @@config = BlockHash.evaluate({}, &block)
+    end
+  end
+  
+  Application.configuration do |config|
+    config.format   "XML"
+    config.rpc      "XML-RPC"
+  end
+  
+Please note that values are overwritten, and only the last value is stored:
+
+  config = BlockHash.evaluate do |o|
+    o.name    "moritz"
+    o.name    "maurycy"
+  end
+  
+  => {:name=>"maurycy"}
+
+Of course, BlockHash removes a trailing '=':
+
+  config = BlockHash.evaluate do |o|
+    o.name    "maurycy"
+    o.email = "maurycy@g.pl"
+  end
+  
+  => {:email=>"maurycy@g.pl", :name=>"maurycy"}
