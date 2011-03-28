@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Maurycy Pawlowski-Wieronski"]
   s.email       = ["maurycy@g.pl"]
   s.homepage    = "https://github.com/maurycy/block_hash"
-  s.summary		= %w{Evaluate a block to a hash}
+  s.summary		= %q{Evaluate a block to a hash}
 
   s.rubyforge_project = "block_hash"
 
