@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'test/unit'
-require 'ruby-debug'
 
 require '../lib/block_hash'
 
